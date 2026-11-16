@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulter Prix Carburant</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h2>Recherche des Prix par Station et Date</h2>
+<input type="text" id="station" placeholder="Nom Station" value="StationNord">
+<input type="text" id="date" placeholder="YYYY-MM-DD" value="2026-11-16">
+<button id="btn">Rechercher</button>
+
+<pre id="output"></pre>
+
+<script>
+    $('#btn').click(function() {
+        let s = $('#station').val();
+        let d = $('#date').val();
+        $.get(`http://localhost:8080/station-project/api/prices/${s}/${d}`, function(data) {
+            $('#output').text(JSON.stringify(data, null, 2));
+        });
+    });
+</script>
+</body>
+</html>
